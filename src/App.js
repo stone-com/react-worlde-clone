@@ -1,7 +1,9 @@
 import './App.css';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
+import { boardDefault } from './Words';
+
 // use context api to pass state to all children components inside provider
 export const AppContext = createContext();
 
