@@ -2,31 +2,17 @@ import React, { useContext } from 'react';
 import { AppContext } from '../App';
 
 function Key({ keyVal, bigKey }) {
-  // bring in board state from context
-  const { board, setBoard, currAttempt, setCurrentAttempt } =
+  // bring in handler functions from context
+  const { onDelete, onSelectLetter, onEnter } =
     useContext(AppContext);
   // function to handle when a letter is clicked
   const selectLetter = () => {
-    // checking if key clicked is enter key, and handling it if so.
     if (keyVal === 'ENTER') {
-      // return if guess is under 5 letters.
-      if (currAttempt.letterPos !== 5) return;
-      // increment the attempt by 1, moving to the next line on the board, set letterPos back to 0 (first position)
-      setCurrentAttempt({ attempt: currAttempt + 1, letterPos: 0 });
+      onEnter();
+    } else if (keyVal === 'DELETE') {
+      onDelete();
     } else {
-      // return and end the function after the 5th letter
-      if (setCurrentAttempt.letterPos > 4) return;
-      // spread out board array(from context) and set to newBoard variable
-      const newBoard = [...board];
-      // set board tile to key value
-      newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
-      // set the board state to the new board, this will happen every time you click/guess a new letter.
-      setBoard(newBoard);
-      //
-      setCurrentAttempt({
-        ...currAttempt,
-        letterPos: currAttempt.letterPos + 1,
-      });
+      onSelectLetter(keyVal);
     }
   };
   return (
