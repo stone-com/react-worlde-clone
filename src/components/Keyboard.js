@@ -1,6 +1,6 @@
 import React from 'react';
 import Key from './Key';
-
+// here we create keyboard by mapping through arrays of keys and creting a key component for each key
 function Keyboard() {
   // create arrays for different keys, will map through them in the return
   const keys1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
